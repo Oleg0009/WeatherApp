@@ -40,8 +40,7 @@ export default {
   },
   methods: {
     findCity(){
-       this.$store.commit('setInputValue', this.inputData);  
-          
+       this.$store.commit('setInputValue', this.inputData);   
     },
     changeInputs() {
         this.isFavouritesFindActive = !this.isFavouritesFindActive
@@ -55,8 +54,6 @@ export default {
           .catch((error)=>{
             console.log(error)
           })
-       console.log(this.$store.state.weatherData);
-       console.log(this.$store.state.currentCityWeather);
           this.inputData='';
           this.$store.commit('setInputValue', this.$store.state.weatherData.name); 
             console.log(this.$store.state.weatherData.name);
@@ -76,7 +73,3 @@ export default {
   },
 }
 </script>
-
-<style>
-
-</style>
