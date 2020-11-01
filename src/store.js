@@ -7,6 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     apiKey:'d720d6dde2bed6cf6e6d650907931956',
+    loading:true,
     citiesData: [],
     favoriteCities:[],
     currentCityWeather: {},
@@ -34,6 +35,9 @@ export default new Vuex.Store({
     setInputValue(state, data) {
       state.inputValue = data;
     },
+    changeLoading(state,data) {
+      state.loading = data ;
+    },
   },
   actions:{
     getCurrentCoord(){
@@ -44,14 +48,18 @@ export default new Vuex.Store({
     loadCityWeatherDataByGeo: (context,data) => {
       let lat = data.coords.latitude;
       let lng = data.coords.longitude;
-      fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${context.state.apiKey}`)
-      .then(res => {
-        return res.json()
-      })
-      .then(data => {
-         context.commit('setCurrentCityWeather', data)
-         context.commit('setWeatherData', data);
-      });
+      context.commit('changeLoading', true);
+      setTimeout(()=>{
+        fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${context.state.apiKey}`)
+        .then(res => {
+          return res.json()
+        })
+        .then(data => {
+           context.commit('setCurrentCityWeather', data)
+           context.commit('setWeatherData', data);
+        });
+        context.commit('changeLoading', false);
+      },400)
     },
     loadCitiesData (context) {
       fetch("/citiesData/cities.json")
@@ -61,12 +69,14 @@ export default new Vuex.Store({
       });
     },
     loadWeatherData (context, payload) {
+      context.commit('changeLoading', true);
       fetch(`http://api.openweathermap.org/data/2.5/weather?q=${payload.cityName}&appid=${context.state.apiKey}`)
       .then(res => {
         return res.json()
       })
       .then(data => {
         context.commit('setWeatherData', data)
+        context.commit('changeLoading', false);
       });
     },
     loadForecastData (context, payload) {
@@ -94,7 +104,7 @@ export default new Vuex.Store({
   getters:{
     getCurrentCity(state){
       let foundCity=state.citiesData.filter(city=>city.name==state.inputValue);
-          state.currentCity=foundCity[0];
+      state.currentCity=foundCity[0];
       if(foundCity.length!=0){
         return foundCity;
       }
@@ -104,11 +114,6 @@ export default new Vuex.Store({
       else{
         return `We didn't found ${state.inputValue}`
       }
-    },
-    getCurrentCityByCoord(state){
-        let current = state.currentCity;
-        return current;
-     
     }
   }
 
