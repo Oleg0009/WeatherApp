@@ -52,12 +52,10 @@ export default {
             this.$store.dispatch('loadCityWeatherDataByGeo',data);
           })
           .catch((error)=>{
-            console.log(error)
+            return error
           })
           this.inputData='';
           this.$store.commit('setInputValue', this.$store.state.weatherData.name); 
-            console.log(this.$store.state.weatherData.name);
-       
     }   ,
     onChangeSelected(e){
        this.$store.commit('setInputValue', e.target.value); 

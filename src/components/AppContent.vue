@@ -27,7 +27,7 @@
         <div class="time-condition-wrapper" v-for="(item, index) in forecastData.list[selectedDayIndex]" :key="index">
           <div @click="loadDayTimeForecast(selectedDayIndex, index)" class="time-condition">
             <div>{{item.dt_txt.slice(12)}}</div>
-            <div>&#8451; {{item.main.temp}}</div>
+            <div>{{item.main.temp}}&#8451;</div>
             <div>{{item.weather[0].main}}</div>
           </div>
         </div>
