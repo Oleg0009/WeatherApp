@@ -1,0 +1,12 @@
+@import "fonts.scss";
+@import "variables.scss";
+@import "mixins.scss";
+@import "reset.scss";
+@import "main.scss";
+
+@import "../pages/index.scss";
+
+@import "../components/app-header.scss";
+@import "../components/app-content.scss";
+@import "../components/locations.scss";
+@import "../components/home.scss";
