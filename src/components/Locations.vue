@@ -44,7 +44,8 @@ export default {
             }
             else{
                 e.currentTarget.classList.add('active')
-                this.$store.commit('addFavoriteCity',this.$store.state.currentCity);
+                if (!this.$store.state.favoriteCities.includes(this.$store.state.currentCity))
+                    this.$store.commit('addFavoriteCity',this.$store.state.currentCity);
             }
         }
     

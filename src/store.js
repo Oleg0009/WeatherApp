@@ -49,7 +49,6 @@ export default new Vuex.Store({
       let lat = data.coords.latitude;
       let lng = data.coords.longitude;
       context.commit('changeLoading', true);
-      setTimeout(()=>{
         fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${context.state.apiKey}`)
         .then(res => {
           return res.json()
@@ -59,7 +58,6 @@ export default new Vuex.Store({
            context.commit('setWeatherData', data);
         });
         context.commit('changeLoading', false);
-      },400)
     },
     loadCitiesData (context) {
       fetch("/citiesData/cities.json")
@@ -112,7 +110,7 @@ export default new Vuex.Store({
         return `Enter your City`
       }
       else{
-        return `We didn't found ${state.inputValue}`
+        return `We didn't found ${state.inputValue} please put value in English`
       }
     }
   }
