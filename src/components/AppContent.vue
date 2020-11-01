@@ -9,7 +9,7 @@
                  <p>{{weatherData.weather[0].main}}</p>
             </div>
             <div class="weather-info__content__temperature">
-               <div class="weather-info__content__block temperature">&#8451; {{weatherData.main.temp}}</div>
+               <div class="weather-info__content__block temperature">{{weatherData.main.temp}}&#8451;</div>
             </div>
             <div class="weather-info__content__infolist">
               <div class="weather-info__content__infolist-item">Pressure: {{weatherData.main.pressure}}</div>

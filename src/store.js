@@ -49,7 +49,7 @@ export default new Vuex.Store({
       let lat = data.coords.latitude;
       let lng = data.coords.longitude;
       context.commit('changeLoading', true);
-        fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${context.state.apiKey}`)
+        fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${context.state.apiKey}&units=metric`)
         .then(res => {
           return res.json()
         })
@@ -68,7 +68,7 @@ export default new Vuex.Store({
     },
     loadWeatherData (context, payload) {
       context.commit('changeLoading', true);
-      fetch(`http://api.openweathermap.org/data/2.5/weather?q=${payload.cityName}&appid=${context.state.apiKey}`)
+      fetch(`http://api.openweathermap.org/data/2.5/weather?q=${payload.cityName}&appid=${context.state.apiKey}&units=metric`)
       .then(res => {
         return res.json()
       })
@@ -78,7 +78,7 @@ export default new Vuex.Store({
       });
     },
     loadForecastData (context, payload) {
-      fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${payload.cityName}&appid=${context.state.apiKey}`)
+      fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${payload.cityName}&appid=${context.state.apiKey}&units=metric`)
       .then(res => {
         return res.json();
       })
@@ -89,7 +89,7 @@ export default new Vuex.Store({
     loadWeatherByCoord(context) {
       let lng = context.state.currentCity.lng;
       let lat = context.state.currentCity.lat;
-      fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${context.state.apiKey}`)
+      fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${context.state.apiKey}&units=metric`)
        .then(res => {
         return res.json()
       })
