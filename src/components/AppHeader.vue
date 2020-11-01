@@ -5,6 +5,7 @@
       <select v-if="isFavouritesFindActive" 
        name="" id="favouritesSelect"
        @change="onChangeSelected"
+       v-model="selectedValue"
        class="header-container__select-field">
              <option v-for="option in optionsFromStore" :key="option.id" :value="option.name">{{option.name}}</option>
        </select>
@@ -30,8 +31,6 @@ export default {
   name: "app-header",
   data() {
     return{
-      options:[
-      ],
       inputData:'',
       isFavouritesFindActive: false
     }
@@ -54,12 +53,15 @@ export default {
           this.$store.commit('setInputValue', this.$store.state.weatherData.name); 
     }   ,
     onChangeSelected(e){
-    console.log(e)
+       this.$store.commit('setInputValue', e.target.value); 
     }
   },
   computed: {
     optionsFromStore(){
       return this.$store.state.favoriteCities;
+    },
+    selectedValue(){
+      return this.$store.state.currentCity.name;
     }
   },
 }

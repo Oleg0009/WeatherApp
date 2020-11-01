@@ -141,7 +141,7 @@ export default {
             forecastData.list.shift()
           })
         }
-        let updatedData = this.$store.state.forecastData
+        let updatedData = this.$store.state.forecastData;
         updatedData.list = sortedData
         return updatedData
       } else {
