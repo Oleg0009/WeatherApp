@@ -40,9 +40,6 @@
         </div> 
       </div>
     </div>
-
-
-
   </section> 
 </template>
 
@@ -62,93 +59,93 @@ export default {
   },
   created() {
      // no sunset and sunrise in each request
-      this.sunset = this.$store.state.weatherData.sys.sunset;
-      this.sunrise = this.$store.state.weatherData.sys.sunrise;
-      this.cityName=this.$store.getters.getCurrentCity[0].name;
-      this.loadWeatherData(this.$store.getters.getCurrentCity[0].name);
+      // this.sunset = this.$store.state.weatherData.sys.sunset;
+      // this.sunrise = this.$store.state.weatherData.sys.sunrise;
+      // this.cityName=this.$store.getters.getCurrentCity[0].name;
+      // this.loadWeatherData(this.$store.getters.getCurrentCity[0].name);
   },
   methods:{
-    loadWeatherData(cityName) {
-              this.$store.dispatch('loadWeatherData', { cityName: cityName }).then(() => {
-                  this.$store.dispatch('loadForecastData', { cityName: cityName }).then(() => {
-                  this.weatherData = this.$store.state.weatherData;
-                  this.forecastData = this.$store.state.forecastData;
-              })
-          })
-    },
+    // loadWeatherData(cityName) {
+    //           this.$store.dispatch('loadWeatherData', { cityName: cityName }).then(() => {
+    //               this.$store.dispatch('loadForecastData', { cityName: cityName }).then(() => {
+    //               this.weatherData = this.$store.state.weatherData;
+    //               this.forecastData = this.$store.state.forecastData;
+    //           })
+    //       })
+    // },
 
-    loadCurrentWeather(cityName){
-      this.$store.dispatch('loadWeatherData', { cityName: cityName }).then(() => {
-        this.showCurrendWeather = true
-      })
-    },
-    changeDay(index){
-      this.selectedDayIndex = index
-    },
-    loadDayTimeForecast(dayIndex, timeIndex){
-        this.$store.commit('setWeatherData', this.forecastData.list[dayIndex][timeIndex])
-    },
-    getHoursFromDate(milliseconds) {
-      let date = new Date(milliseconds)
-      let hours = date.getHours();
-      let minutes = date.getMinutes();
-      hours = hours % 12;
-      hours = hours ? hours : 12;
-      let strTime = hours + ':' + minutes;
-      return strTime;
-    },
-    calculateWindDirection(deg){
-      if(deg === 0){
-        return "North"
-      }
-      if(deg > 0 && deg < 90){
-        return "Northeast"
-      }
-      if(deg === 90){
-        return "East"
-      }
-      if(deg > 90 && deg < 180){
-        return "Southeast"
-      }
-      if(deg === 180){
-        return "South"
-      }
-      if(deg > 180 && deg < 270){
-        return "Southwest"
-      }
-      if(deg === 270){
-        return "West"
-      }
-      if(deg > 180 && deg < 360){
-        return "Northwest"
-      }
-    }
+    // loadCurrentWeather(cityName){
+    //   this.$store.dispatch('loadWeatherData', { cityName: cityName }).then(() => {
+    //     this.showCurrendWeather = true
+    //   })
+    // },
+    // changeDay(index){
+    //   this.selectedDayIndex = index
+    // },
+    // loadDayTimeForecast(dayIndex, timeIndex){
+    //     this.$store.commit('setWeatherData', this.forecastData.list[dayIndex][timeIndex])
+    // },
+    // getHoursFromDate(milliseconds) {
+    //   let date = new Date(milliseconds)
+    //   let hours = date.getHours();
+    //   let minutes = date.getMinutes();
+    //   hours = hours % 12;
+    //   hours = hours ? hours : 12;
+    //   let strTime = hours + ':' + minutes;
+    //   return strTime;
+    // },
+    // calculateWindDirection(deg){
+    //   if(deg === 0){
+    //     return "North"
+    //   }
+    //   if(deg > 0 && deg < 90){
+    //     return "Northeast"
+    //   }
+    //   if(deg === 90){
+    //     return "East"
+    //   }
+    //   if(deg > 90 && deg < 180){
+    //     return "Southeast"
+    //   }
+    //   if(deg === 180){
+    //     return "South"
+    //   }
+    //   if(deg > 180 && deg < 270){
+    //     return "Southwest"
+    //   }
+    //   if(deg === 270){
+    //     return "West"
+    //   }
+    //   if(deg > 180 && deg < 360){
+    //     return "Northwest"
+    //   }
+    // }
   },
   computed:{
-    weatherData() {
-      return this.$store.state.weatherData
-    },
-    forecastData() {
-      let forecastData = this.$store.state.forecastData;
-      if(forecastData.list && forecastData.list[0].dt_txt){
-        let sortedData = []
-        for(let i = 0; i < 5; i++){
-          let oldDate = forecastData.list[0].dt_txt.slice(0, 10);
-          let filteredArray = forecastData.list.filter((item) => {
-            return item.dt_txt.slice(0, 10) === oldDate
-          })
-          sortedData.push(filteredArray)
-          sortedData[sortedData.length - 1].forEach(() => {
-            forecastData.list.shift()
-          })
-        }
-        let updatedData = this.$store.state.forecastData;
-        updatedData.list = sortedData
-        return updatedData
-      } else {
-        return {}
-      }
-    }
+    // weatherData() {
+    //   return this.$store.state.weatherData
+    // },
+    // forecastData() {
+    //   let forecastData = this.$store.state.forecastData;
+    //   if(forecastData.list && forecastData.list[0].dt_txt){
+    //     let sortedData = []
+    //     for(let i = 0; i < 5; i++){
+    //       let oldDate = forecastData.list[0].dt_txt.slice(0, 10);
+    //       let filteredArray = forecastData.list.filter((item) => {
+    //         return item.dt_txt.slice(0, 10) === oldDate
+    //       })
+    //       sortedData.push(filteredArray)
+    //       sortedData[sortedData.length - 1].forEach(() => {
+    //         forecastData.list.shift()
+    //       })
+    //     }
+    //     let updatedData = this.$store.state.forecastData;
+    //     updatedData.list = sortedData
+    //     return updatedData
+    //   } else {
+    //     return {}
+    //   }
+    // }
   }
 }
 </script>

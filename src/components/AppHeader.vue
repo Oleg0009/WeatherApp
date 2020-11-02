@@ -22,12 +22,17 @@
     <div v-if="isFavouritesFindActive" @click="changeInputs()" 
     class="button header-container__find-from-input-button" 
     title="Choose city from manual entering"></div>
-    <div v-if="!isFavouritesFindActive" @click="changeInputs()" class="button header-container__find-from-favorites-button" title="Choose city from favourites"></div>
-    <div class="button header-container__find-by-location-button" @click="chooseByGeo" title="Choose city by your location"></div>
+    <div v-if="!isFavouritesFindActive"
+     @click="changeInputs()"
+      class="button header-container__find-from-favorites-button" 
+      title="Choose city from favourites"></div>
+    <GeoButton></GeoButton>
   </section>
 </template>
 
 <script>
+
+import GeoButton from './GeoButton';
 
 export default {
   name: "app-header",
@@ -37,6 +42,9 @@ export default {
       loading:true,
       isFavouritesFindActive: false
     }
+  },
+  components: {
+    GeoButton
   },
   methods: {
     findCity(){
