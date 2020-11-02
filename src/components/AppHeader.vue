@@ -22,12 +22,17 @@
     <div v-if="isFavouritesFindActive" @click="changeInputs()" 
     class="button header-container__find-from-input-button" 
     title="Choose city from manual entering"></div>
-    <div v-if="!isFavouritesFindActive" @click="changeInputs()" class="button header-container__find-from-favorites-button" title="Choose city from favourites"></div>
-    <div class="button header-container__find-by-location-button" @click="chooseByGeo" title="Choose city by your location"></div>
+    <div v-if="!isFavouritesFindActive"
+     @click="changeInputs()"
+      class="button header-container__find-from-favorites-button" 
+      title="Choose city from favourites"></div>
+    <GeoButton></GeoButton>
   </section>
 </template>
 
 <script>
+
+import GeoButton from './GeoButton';
 
 export default {
   name: "app-header",
@@ -38,10 +43,12 @@ export default {
       isFavouritesFindActive: false
     }
   },
+  components: {
+    GeoButton
+  },
   methods: {
     findCity(){
-       this.$store.commit('setInputValue', this.inputData);  
-          
+       this.$store.commit('setInputValue', this.inputData);   
     },
     changeInputs() {
         this.isFavouritesFindActive = !this.isFavouritesFindActive
@@ -53,14 +60,10 @@ export default {
             this.$store.dispatch('loadCityWeatherDataByGeo',data);
           })
           .catch((error)=>{
-            console.log(error)
+            return error
           })
-       console.log(this.$store.state.weatherData);
-       console.log(this.$store.state.currentCityWeather);
           this.inputData='';
           this.$store.commit('setInputValue', this.$store.state.weatherData.name); 
-            console.log(this.$store.state.weatherData.name);
-       
     }   ,
     onChangeSelected(e){
        this.$store.commit('setInputValue', e.target.value); 
@@ -76,7 +79,3 @@ export default {
   },
 }
 </script>
-
-<style>
-
-</style>
