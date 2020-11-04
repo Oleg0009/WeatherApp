@@ -38,7 +38,7 @@
     }
   }
   &__text-field {
-    width: 100%;
+    width: 75%;
     height: 100%;
     box-sizing: border-box;
     padding-left: 20px;
@@ -75,16 +75,8 @@
   &__find-from-favorites-button {
     background: url("./assets/img/like.png") no-repeat center center, #3e3e3e;
   }
-  &__find-by-location-button {
-    background: url("./assets/img/geo.png") no-repeat center center, #3e3e3e;
-  }
+
   .button {
-    cursor: pointer;
-    width: 10%;
-    height: 40px;
-    border-radius: 5px;
-    background-color: #3e3e3e;
-    background-size: 25px 25px;
     &:hover{
       opacity: 0.7;
     }

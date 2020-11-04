@@ -1,6 +1,6 @@
 <template>
   <section class="app-content">
-    <div class="app-content__weather-info-wrapper">
+    <!-- <div class="app-content__weather-info-wrapper">
       <div class="weather-info">
         <h2 class="weather-info__title">{{cityName}}</h2>
         <div class="weather-info__content" v-if="weatherData.main">
@@ -39,7 +39,7 @@
           <p>{{item[0].dt_txt.slice(0, 10)}}</p>  
         </div> 
       </div>
-    </div>
+    </div> -->
   </section> 
 </template>
 
@@ -49,12 +49,12 @@ export default {
   name: "app-content",
   data() {
     return{
-      cityName:'',
-      sunrise:'',
-      sunset:'',
-      weatherConditions: [],
-      selectedDayIndex: 0,
-      showCurrendWeather: true
+      // cityName:'',
+      // sunrise:'',
+      // sunset:'',
+      // weatherConditions: [],
+      // selectedDayIndex: 0,
+      // showCurrendWeather: true
     }
   },
   created() {
