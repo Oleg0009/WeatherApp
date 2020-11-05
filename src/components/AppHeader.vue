@@ -1,39 +1,41 @@
 <template>
-  <section class="header-container">
-    <h1 class="header-container__title">Weather app!</h1>
-   
-    <InputSelect></InputSelect>
-    <ChangeTypeBtn></ChangeTypeBtn>
-    <GeoButton></GeoButton>
-  </section>
+    <section class="header-container">
+        <h1 class="header-container__title">Weather app!</h1>
+        <InputSelect
+        :active="isSelectOn">
+        </InputSelect>
+        <ChangeTypeBtn
+        @change-select="changeInputs"
+        :active="isSelectOn">
+        </ChangeTypeBtn>
+         <GeoButton></GeoButton>
+    </section>
 </template>
 
 <script>
-
 import GeoButton from './buttons/GeoButtonBtn';
 import InputSelect from './buttons/InputSelectBtn';
 import ChangeTypeBtn from './buttons/ChangeTypeBtn';
+
 export default {
-  name: "app-header",
-  data() {
-    return{
-      // inputData:'',
-      // loading:true,
-      // isFavouritesFindActive: false
-    }
-  },
-  components: {
-    GeoButton,
-    InputSelect,
-    ChangeTypeBtn
-  },
-  methods: {
-    // findCity(){
-    //    this.$store.commit('setInputValue', this.inputData);   
-    // },
-    // changeInputs() {
-    //     this.isFavouritesFindActive = !this.isFavouritesFindActive
-    // },
+    name: "app-header",
+    data() {
+        return{
+            isSelectOn: false
+        }
+    },
+    components: {
+        GeoButton,
+        InputSelect,
+        ChangeTypeBtn
+    },
+    methods: {
+      // findCity(){
+      //    this.$store.commit('setInputValue', this.inputData);   
+      // },
+        changeInputs() {
+            this.isSelectOn = !this.isSelectOn
+        },
     // chooseByGeo(){
     //       this.$store.dispatch('getCurrentCoord')
     //       .then((data)=>{

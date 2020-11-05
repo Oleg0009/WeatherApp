@@ -1,6 +1,6 @@
 <template>
-    <section>
-
+    <section style="text-align:center" v-if="getCityName.name">
+         {{getCityName.name}} - {{ getCityName.main.temp }}&#8451;
         <!-- <div class="loader-container" v-if="getLoader"><Loader></Loader></div>
        <div class="city-container" v-else>
         <div class="city-container__like-block" @click="addCurrentCityToFavorite">
@@ -24,7 +24,7 @@ export default {
         return{
             // cityName:'',
             // forecastData:{},
-            // weatherData:{}
+             currentCity:{}
         }
     },
     components:{
@@ -52,11 +52,10 @@ export default {
     
   },
     computed:{
-        // getCityName(){
-        //    this.$store.dispatch('loadWeatherByCoord');
-        //    this.loadWeatherData(this.$store.getters.getCurrentCity[0].name);
-        //    return this.$store.getters.getCurrentCity[0].name;
-        // },
+        getCityName(){
+           
+              return this.$store.state.currentCity;
+        }
         // getLoader(){
         //     return this.$store.state.loading;
         // }

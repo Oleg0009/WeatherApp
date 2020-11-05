@@ -9,8 +9,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    apiKey:'d720d6dde2bed6cf6e6d650907931956',
-    loading:true
+    currentCity:{}
   },
   mutations:mutations,
   actions:actions,
