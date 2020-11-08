@@ -36,12 +36,16 @@ export default {
     },
     methods: {
         async findCity(){
-            await this.$store.dispatch('findCity',this.inputData);
-            let getCurrentCity = await this.$store.getters.getCurrentCity;
-            console.log(getCurrentCity);
+            let answer = await this.$store.dispatch('checkIfHasCityInFavorites',this.inputData);
+            //check if we have this city in favorite to show correct like option
+            if(!answer)
+                await this.$store.dispatch('findCity',this.inputData);
+            else
+                await this.$store.dispatch('setCityAsCurrent',this.inputData);
+            this.clearInput();     
         },
-        onChangeSelected(){
-
+        clearInput(){
+            this.inputData='';
         } 
     }
 }

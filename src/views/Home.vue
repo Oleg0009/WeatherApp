@@ -2,7 +2,7 @@
     <div class="home-container">
 
         <AppHeader></AppHeader>
-        <Locations v-if="checkIfCityIs"></Locations>
+        <FounCity v-if="checkIfCityIs"></FounCity>
         <div v-else class="home-container__else-message"> 
           {{getAnswer}}
         </div>
@@ -11,12 +11,12 @@
 </template>
 
 <script>
-import Locations from '../components/Locations'
+import FounCity from '../components/FounCity'
 import AppHeader from "../components/AppHeader"
 export default {
     components: {
         AppHeader,
-        Locations
+        FounCity
     },
     computed:{
         checkIfCityIs(){
