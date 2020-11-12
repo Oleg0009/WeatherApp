@@ -3,9 +3,8 @@
         <select v-if="active"
             name="" 
             id="favouritesSelect"
-            @change="onChangeSelected"
             class="choose-container__select">
-            <!-- <option v-for="option in optionsFromStore" :key="option.id" :value="option.name">{{option.name}}</option> -->
+            <option v-for="option in getFavorites" :key="option.id" :value="option.name">{{option.name}}</option>
         </select>
         <input v-if="!active"
             v-model='inputData'
@@ -47,6 +46,11 @@ export default {
         clearInput(){
             this.inputData='';
         } 
+    },
+    computed:{
+        getFavorites(){
+            return this.$store.state.favoriteCities;
+        }
     }
 }
 </script>
